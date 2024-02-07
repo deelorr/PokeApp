@@ -18,7 +18,7 @@
   </form>
 
   {% if pokemon %}
-    <table class="table">
+    <!-- <table class="table">
         <thead>
         <tr>
             <th scope="col">Name</th>
@@ -41,6 +41,14 @@
                 <td><img src="{{pokemon['shinySprite URL']}}" alt="Shiny Pokemon Sprite"></td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
+    <div class="card" style="width: 18rem;">
+      <img src="{{pokemon['Sprite URL']}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ pokemon['Name'] }}</h5>
+        <p class="card-text">HP: {{ pokemon['HP'] }} DEF: {{ pokemon['Defense'] }} ATK: {{ pokemon['Attack'] }}</p>
+        <p class="card-text">Ability: {{ pokemon['Ability'] }}</p>
+      </div>
+    </div>
   {% endif %}
 {% endblock %}
