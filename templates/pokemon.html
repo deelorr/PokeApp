@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Pokemon
+{% endblock %}
+
+{% block content %}
+{%include './includes/nav.html'%}
+  <form method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name or ID</label>
+      <input type="text" class="form-control" id="name" name='name'>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  {% if pokemon %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">HP</th>
+            <th scope="col">Defense</th>
+            <th scope="col">Attack</th>
+            <th scope="col">Ability</th>
+            <th scope="col">Sprite</th>
+            <th scope="col">Shiny Sprite</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ pokemon['Name'] }}</td>
+                <td>{{ pokemon['HP'] }}</td>
+                <td>{{ pokemon['Defense'] }}</td>
+                <td>{{ pokemon['Attack'] }}</td>
+                <td>{{ pokemon['Ability'] }}</td>
+                <td><img src="{{pokemon['Sprite URL']}}" alt="Pokemon Sprite"></td>
+                <td><img src="{{pokemon['shinySprite URL']}}" alt="Shiny Pokemon Sprite"></td>
+            </tr>
+        </tbody>
+    </table>
+  {% endif %}
+{% endblock %}
