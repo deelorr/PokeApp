@@ -7,11 +7,14 @@
 {% block content %}
 {%include './includes/nav.html'%}
   <form method="POST">
+    {{ form.hidden_tag() }}
     <div class="mb-3">
       <label for="name" class="form-label">Name or ID</label>
-      <input type="text" class="form-control" id="name" name='name'>
+      <!-- <input type="text" class="form-control" id="name" name='name'> -->
+      {{ form.name(class='form_control', id='name') }}
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+    {{ form.submit_btn }}
   </form>
 
   {% if pokemon %}
