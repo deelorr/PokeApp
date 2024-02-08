@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} PokeApp {% endblock %}
+{% block title %} PokéApp {% endblock %}
 
 {%block styles%}
 <link rel="stylesheet" href="../static/styles/login.css">
@@ -9,14 +9,14 @@
 {% block content %}
 {%include './includes/nav.html'%}
   <div class="pokeapp-title">
-    <h1 class="pokeapp-text">PokeApp</h1>
-    <p class="pokeapp-text">Search for a Pokemon by name or ID</p>
+    <h1 class="pokeapp-text">PokéApp</h1>
+    <p class="pokeapp-text">Search for a Pokémon by name or ID</p>
   </div>
   <div class='flex-container'>
     <form method="POST">
       {{ form.hidden_tag() }}
     <div class="mb-3">
-      <label for="name" class="form-label">Name or ID</label>
+      <label for="name" class="form-label">Enter Name or ID</label>
       {{ form.name(class='form-control', id='name') }}
     </div>
     {{ form.submit_btn(class='btn my-btn') }}

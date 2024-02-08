@@ -1,13 +1,7 @@
-head {
-    background: #fffbd5;
-    background: -webkit-linear-gradient(to bottom, #b20a2c, #dbdbdb);
-    background: linear-gradient(to bottom, #b20a2c, #dbdbdb);
-}
-
 body{
     background: #fffbd5;
-    background: -webkit-linear-gradient(to bottom, #b20a2c, #dbdbdb);
-    background: linear-gradient(to bottom, #b20a2c, #dbdbdb);
+    background: -webkit-linear-gradient(to top, #b20a2c, #fffbd5);
+    background: linear-gradient(to top, #b20a2c, #fffbd5);
     height: 100vh;
 }
 
@@ -74,15 +68,17 @@ form {
 }
 
 .navbar {
-    background: #fffbd5;
-    background: -webkit-linear-gradient(to bottom, #b20a2c, #dbdbdb);
-    background: linear-gradient(to bottom, #b20a2c, #dbdbdb);
     padding: 0px;
+    background: transparent;
+}
+
+.container-fluid {
+    background: #fffbd5;
 }
 
 .navbar-brand {
-    padding: 8px;
-    color: #dbdbdb;
+    padding: 8px 0px;
+    color: #b20a2c;
     margin: 0px;
 }
 
@@ -91,7 +87,7 @@ form {
 }
 
 .nav-link {
-    color: #dbdbdb;
+    color: #b20a2c;
 }
 
 .nav-link:hover {
