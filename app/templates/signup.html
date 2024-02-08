@@ -1,8 +1,6 @@
 {%extends "base.html"%}
 
-{%block title%}
-    Signup
-{%endblock%}
+{%block title%} Sign Up {%endblock%}
 
 {%block styles%}
 <link rel="stylesheet" href="../static/styles/login.css">
@@ -25,7 +23,7 @@
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
           {{ form.password(class="form-control", id="password")}}
-        </div>
+        </div class="mb-3">
         {{ form.submit_btn(class='btn my-btn') }}
       </form>
     </div>

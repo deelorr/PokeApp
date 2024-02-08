@@ -1,8 +1,19 @@
 body{
-    background: #134E5E;
-    background: -webkit-linear-gradient(to right, #71B280, #134E5E);
-    background: linear-gradient(to right, #71B280, #134E5E); 
+    background: #fffbd5;
+    background: -webkit-linear-gradient(to bottom, #b20a2c, #dbdbdb);
+    background: linear-gradient(to bottom, #b20a2c, #dbdbdb);
     height: 100vh;
+}
+
+form {
+    background-color: white;
+    padding: 10px;
+    margin-top: 7vh;
+    border-radius: 7.5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    align-items: center;
+    width: fit-content;
+    text-align: center;
 }
 
 .flex-container {
@@ -11,35 +22,64 @@ body{
     justify-content: center;
 }
 
-form {
-    max-width: 350px;
-    width: 50%;
-    min-width: 300px;
-    background-color: white;
-    padding: 20px;
-    margin-top: 10vh;
-    border-radius: 7.5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
 .my-btn {
-    color: white;
-    background-color: #134E5E;
+    color: dbdbdb;
+    background-color: #b20a2c;
 }
 
 .my-btn:hover {
-    color: white;
-    background-color: #71B280;
+    color: #b20a2c;
+    background-color: #dbdbdb;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card {
-    margin-top: 10vh;
+    display: flex;
+    margin-top: 7vh;
     border-radius: 7.5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    align-items: center;
+    width: fit-content;
 }
 
 .card-body {
-    padding: 20px;
     text-align: center;
+    padding: 15px;
+}
+
+.card-img-top {
+    border-radius: 7.5px;
+    width: 65%;
+    padding: 10px;
+    margin: 10px;
+}
+
+.form-label {
+    padding: 10px;
+}
+
+#name.form-control {
+    padding: 10px;
+    margin: 0px;
+}
+
+.mb-3 {
+    padding: 10px;
+}
+
+.navbar {
+    background: #fffbd5;
+    background: -webkit-linear-gradient(to bottom, #b20a2c, #dbdbdb);
+    background: linear-gradient(to bottom, #b20a2c, #dbdbdb);
+    padding: 0px;
+}
+
+.container-fluid {
+    padding: 10px;
+}
+
+.navbar-brand {
+    color: #dbdbdb;
+    padding: 8px;
+    margin: 0px 15px 0px 0px;
 }

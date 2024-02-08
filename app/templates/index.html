@@ -2,7 +2,12 @@
 
 {% block title %}Home{% endblock %}
 
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/login.css">
+{%endblock%}
+
 {% block content %}
 {%include './includes/nav.html'%}
-<h1>Hello Thieves! Welcome to my app!</h1>
+<h1>Hello Thieves!<br>
+    Welcome to my app page!</h1>
 {% endblock %}

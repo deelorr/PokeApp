@@ -8,6 +8,8 @@ def index():
     return render_template('/index.html')
 
 def get_pokemon_info(name):
+    if name.isdigit():
+        name = str(int(name))
     response = requests.get(f'https://pokeapi.co/api/v2/pokemon/{name.lower()}')
     if response.ok:
         data = response.json()
@@ -19,11 +21,12 @@ def get_pokemon_info(name):
             'Ability': data['abilities'][0]['ability']['name'].title(),
             'Base XP': data['base_experience'],
             'Sprite URL': data['sprites']['front_default'],
-            'shinySprite URL': data['sprites']['front_shiny']
+            'shinySprite URL': data['sprites']['front_shiny'],
+            'ID': data['id']
         }
         return poke_info
 
-@app.route('/pokemon', methods=['GET', 'POST'])
+@app.route('/pokeapp', methods=['GET', 'POST'])
 def pokemon_info():
     form = NameForm()
     if request.method == 'POST' and form.validate_on_submit():
@@ -31,13 +34,13 @@ def pokemon_info():
         if name:
             response = get_pokemon_info(name)
             if response:
-                return render_template('pokemon.html', pokemon=response, form=form)
+                return render_template('pokeapp.html', pokemon=response, form=form)
             else:
-                return render_template('pokemon.html', error="Pokemon not found", form=form)
+                return render_template('pokeapp.html', error="Pokemon not found", form=form)
         else:
-            return render_template('pokemon.html', error="Please provide a Pokemon name", form=form)
+            return render_template('pokeapp.html', error="Please provide a Pokemon name", form=form)
     else:
-        return render_template('pokemon.html', form=form)
+        return render_template('pokeapp.html', form=form)
     
 @app.route('/login', methods=['GET', 'POST'])
 def login():
