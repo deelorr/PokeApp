@@ -1,7 +1,7 @@
 from flask import render_template, request
 import requests
 from app import app
-from app.forms import NameForm
+from app.forms import NameForm, LoginForm, SignUpForm
 
 @app.route('/')
 def index():
@@ -38,3 +38,24 @@ def pokemon_info():
             return render_template('pokemon.html', error="Please provide a Pokemon name", form=form)
     else:
         return render_template('pokemon.html', form=form)
+    
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+        return f'{email} {password}'
+    else:
+        return render_template('login.html', form=form)
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    form = SignUpForm() 
+    if request.method == 'POST' and form.validate_on_submit():
+        username = form.username.data
+        email = form.email.data
+        password = form.password.data
+        return f'{username} {email} {password}'
+    else:
+        return render_template('signup.html', form=form)
