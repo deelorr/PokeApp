@@ -8,6 +8,10 @@
 
 {% block content %}
 {%include './includes/nav.html'%}
+  <div class="pokeapp-title">
+    <h1 class="pokeapp-text">PokeApp</h1>
+    <p class="pokeapp-text">Search for a Pokemon by name or ID</p>
+  </div>
   <div class='flex-container'>
     <form method="POST">
       {{ form.hidden_tag() }}

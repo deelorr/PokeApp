@@ -1,3 +1,9 @@
+head {
+    background: #fffbd5;
+    background: -webkit-linear-gradient(to bottom, #b20a2c, #dbdbdb);
+    background: linear-gradient(to bottom, #b20a2c, #dbdbdb);
+}
+
 body{
     background: #fffbd5;
     background: -webkit-linear-gradient(to bottom, #b20a2c, #dbdbdb);
@@ -8,7 +14,7 @@ body{
 form {
     background-color: white;
     padding: 10px;
-    margin-top: 7vh;
+    margin-top: 3vh;
     border-radius: 7.5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
@@ -74,12 +80,31 @@ form {
     padding: 0px;
 }
 
-.container-fluid {
-    padding: 10px;
+.navbar-brand {
+    padding: 8px;
+    color: #dbdbdb;
+    margin: 0px;
 }
 
-.navbar-brand {
+.navbar-brand:hover {
+    color: #b20a2c;
+}
+
+.nav-link {
     color: #dbdbdb;
-    padding: 8px;
-    margin: 0px 15px 0px 0px;
+}
+
+.nav-link:hover {
+    color: #b20a2c;
+}
+
+.pokeapp-title {
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.pokeapp-text {
+    padding: 10px;
+    margin: 10px;
 }
