@@ -24,7 +24,7 @@ def get_pokemon_info(name):
             'Ability': data['abilities'][0]['ability']['name'].title(),
             'Base XP': data['base_experience'],
             'Sprite URL': data['sprites']['front_default'],
-            'shinySprite URL': data['sprites']['front_shiny'],
+            'Shiny Sprite URL': data['sprites']['front_shiny'],
             'ID': data['id']
         }
         return poke_info

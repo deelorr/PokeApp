@@ -18,8 +18,8 @@ form {
 
 .flex-container {
     display: flex;
-    width: 100%;
     justify-content: center;
+    align-items: center;
 }
 
 .my-btn {
@@ -40,6 +40,7 @@ form {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
     width: fit-content;
+
 }
 
 .card-body {
@@ -52,6 +53,7 @@ form {
     width: 65%;
     padding: 10px;
     margin: 10px;
+    display: block; /* for shiny hover */
 }
 
 .form-label {
@@ -103,4 +105,41 @@ form {
 .pokeapp-text {
     padding: 10px;
     margin: 10px;
+}
+
+/* shiny hover */
+
+.shiny-hover-container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.shiny-hover {
+    background-color: transparent;
+    border: none; /* Add border for visualization */
+    color: #333; /* Adjust button text color */
+    padding: 1px 20px; /* Add padding to the button */
+    font-size: 16px; /* Adjust button font size */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.shiny-hover:hover {
+    background-color: transparent; /* Change background color on hover */
+}
+
+.shiny-hover-container .shiny-hover:hover::after {
+    content: url('{{ pokemon["Shiny Sprite URL"] }}'); /* Correct syntax for URL */
+    position: absolute;
+    bottom: calc(100% + 10px); /* Adjust position if needed */
+    right: 0;
+    width: 100px; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+    background-size: cover;
+    background-position: center;
+    background-image: url('{{ pokemon["Shiny Sprite URL"] }}');
+    border: 5px solid #000; /* Add border for visualization */
+    border-radius: 5px;
+    z-index: 999; /* Ensure the pseudo-element appears above other elements */
 }
