@@ -6,14 +6,23 @@ body{
 }
 
 form {
-    background-color: white;
-    padding: 10px;
-    margin-top: 3vh;
+    background-color: #dbdbdb;
+    padding: 15px;
+    margin: 25px auto;
     border-radius: 7.5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
     width: fit-content;
     text-align: center;
+}
+h1 {
+    text-align: center;
+    margin: 250px auto;
+}
+
+h4 {
+    padding: 5px;
+    margin: 0px;
 }
 
 .flex-container {
@@ -25,6 +34,8 @@ form {
 .my-btn {
     color: dbdbdb;
     background-color: #b20a2c;
+    padding: 10px;
+    margin: 0px 10px 10px 10px;
 }
 
 .my-btn:hover {
@@ -35,25 +46,29 @@ form {
 
 .card {
     display: flex;
-    margin-top: 7vh;
+    margin: 40px auto;
+    padding: 10px;
     border-radius: 7.5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     align-items: center;
     width: fit-content;
-
+    background-color: #dbdbdb;
 }
 
 .card-body {
     text-align: center;
-    padding: 15px;
+    align-items: center;
+}
+
+.card-title {
+    padding: 10px;
+    margin: 0px;
 }
 
 .card-img-top {
     border-radius: 7.5px;
-    width: 65%;
+    width: 75%;
     padding: 10px;
-    margin: 10px;
-    display: block; /* for shiny hover */
 }
 
 .form-label {
@@ -76,6 +91,8 @@ form {
 
 .container-fluid {
     background: #fffbd5;
+    padding: 0px;
+    margin: 0px;
 }
 
 .navbar-brand {
@@ -90,6 +107,7 @@ form {
 
 .nav-link {
     color: #b20a2c;
+    padding: 8px;
 }
 
 .nav-link:hover {
@@ -98,12 +116,12 @@ form {
 
 .pokeapp-title {
     padding: 10px;
-    margin: 10px;
+    margin: 10px auto;
     text-align: center;
+    width: fit-content;
 }
 
 .pokeapp-text {
-    padding: 10px;
     margin: 10px;
 }
 
@@ -117,29 +135,28 @@ form {
 
 .shiny-hover {
     background-color: transparent;
-    border: none; /* Add border for visualization */
-    color: #333; /* Adjust button text color */
-    padding: 1px 20px; /* Add padding to the button */
-    font-size: 16px; /* Adjust button font size */
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    border: none;
+    padding: 0px;
 }
 
 .shiny-hover:hover {
-    background-color: transparent; /* Change background color on hover */
+    background-color: transparent;
 }
 
 .shiny-hover-container .shiny-hover:hover::after {
-    content: url('{{ pokemon["Shiny Sprite URL"] }}'); /* Correct syntax for URL */
-    position: absolute;
-    bottom: calc(100% + 10px); /* Adjust position if needed */
-    right: 0;
-    width: 100px; /* Adjust width as needed */
-    height: 100px; /* Adjust height as needed */
-    background-size: cover;
-    background-position: center;
-    background-image: url('{{ pokemon["Shiny Sprite URL"] }}');
-    border: 5px solid #000; /* Add border for visualization */
-    border-radius: 5px;
-    z-index: 999; /* Ensure the pseudo-element appears above other elements */
+        content: '';
+        position: absolute;
+        bottom: calc(100% + 10px);
+        right: 0;
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        background-position: center;
+        border: 3px solid #000;
+        border-radius: 5px;
+        background-color: #dbdbdb;
+        background-image: url('https://res.cloudinary.com/shiny24/image/upload/v1669396824/pokemon/shiny_symbol_pokemon_tdxjdc.png');
+        content: 'Shiny preview coming soon!';
+        text-align: center;
+        font-weight: bold;
 }
