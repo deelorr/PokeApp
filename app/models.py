@@ -17,3 +17,21 @@ class User(db.Model, UserMixin):
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+class Pokemon(db.Model):
+    name = db.Column(db.String, primary_key=True)
+    base_hp = db.Column(db.Integer, nullable=False)
+    base_atk = db.Column(db.Integer, nullable=False)
+    base_def = db.Column(db.Integer, nullable=False)
+    image = db.Column(db.String, nullable=False)
+    
+    def __init__(self, name, base_hp, base_atk, base_def, image):
+        self.name = name
+        self.base_hp = base_hp
+        self.base_atk = base_atk
+        self.base_def = base_def
+        self.image = image
+    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
