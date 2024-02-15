@@ -16,7 +16,7 @@ def login():
         if queried_user and check_password_hash(queried_user.password, password):
             flash(f'Welcome {queried_user.username}!', 'info')
             login_user(queried_user)
-            return redirect(url_for('index'))
+            return redirect(url_for('main.pokemon_info'))
         else:
             flash('Invalid username email or password', 'warning')
             return render_template('login.html', form=form)

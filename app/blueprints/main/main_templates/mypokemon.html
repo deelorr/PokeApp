@@ -2,6 +2,10 @@
 
 {% block title %}My Pokémon{% endblock %}
 
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/login.css">
+{%endblock%}
+
 {% block content %}
 {% include './includes/nav.html' %}
 <div class="pokeapp-title">
@@ -18,7 +22,7 @@
                 <b>HP:</b> {{ pokemon.pokemon.base_hp }} <b>DEF:</b> {{ pokemon.pokemon.base_def }} <b>ATK:</b> {{ pokemon.pokemon.base_atk }} <br>
                 <b>Caught by:</b> {{ pokemon.user.username }}
             </p>
-            <form method="POST" action="{{ url_for('release_pokemon', pokemon_id=pokemon.id) }}">
+            <form method="POST" action="{{ url_for('main.release_pokemon', pokemon_id=pokemon.id) }}">
                 <button type="submit" class="btn btn-danger">Release</button>
             </form>
         </div>

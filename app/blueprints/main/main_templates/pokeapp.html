@@ -8,12 +8,13 @@
 
 {% block content %}
 {% include './includes/nav.html' %}
-<div class="pokeapp-title">
-    <h1 class="pokeapp-text">PokéApp</h1>
-    <p class="pokeapp-text">Search for a Pokémon by name or ID</p>
+<div class="pokeapp-text">
+    <h1>Hello Thieves,<br>
+        Welcome to PokéApp!<br></h1>
+    <h4>Search for a Pokémon by name or ID</h4>
 </div>
 <div class='flex-container'>
-    <form id="pokemon-search-form" method="POST" action="{{ url_for('pokemon_info') }}">
+    <form id="pokemon-search-form" method="POST" action="{{ url_for('main.pokemon_info') }}">
         {{ form.hidden_tag() }}
         <div class="mb-3">
             <label for="name" class="form-label">Enter Name or ID</label>
@@ -34,7 +35,7 @@
             </p>
             <div class="shiny-hover-container">
                 <button class="shiny-hover">Shiny</button>
-                <form method="POST" action="{{ url_for('catch_pokemon') }}">
+                <form method="POST" action="{{ url_for('main.catch_pokemon') }}">
                   <input type="hidden" name="username" value="{{ current_user.username }}">
                   <input type="hidden" name="pokemon_name" value="{{ pokemon['Name'] }}">
                   <button type="submit" class="btn my-btn">Catch</button>

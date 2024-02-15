@@ -1,14 +1,14 @@
+from . import main
 from flask import request, render_template, redirect, flash, url_for
 import requests
-from app import app
+# from app import app
 from app.models import User, Pokemon, UserPokemon, db
 from .forms import NameForm
 from flask_login import current_user
 
-
-@app.route('/')
+@main.route('/')
 def index():
-    return render_template('home.html')
+    return redirect(url_for('main.pokemon_info'))
 
 def get_pokemon_info(name):
     if name.isdigit():
@@ -29,7 +29,7 @@ def get_pokemon_info(name):
         }
         return poke_info
 
-@app.route('/pokeapp', methods=['GET', 'POST'])
+@main.route('/pokeapp', methods=['GET', 'POST'])
 def pokemon_info():
     form = NameForm()
     if request.method == 'POST' and form.validate_on_submit():
@@ -45,9 +45,9 @@ def pokemon_info():
     else:
         return render_template('pokeapp.html', form=form)
 
-from flask import request, flash, redirect, url_for
+# from flask import request, flash, redirect, url_for
 
-@app.route('/catch', methods=['POST'])
+@main.route('/catch', methods=['POST'])
 def catch_pokemon():
     username = request.form.get('username')
     pokemon_name = request.form.get('pokemon_name')
@@ -81,21 +81,21 @@ def catch_pokemon():
     # Check if the user has already caught the maximum number of Pokémon
     if len(user.pokemon_caught) >= 6:
         flash('You already have 6 Pokémon! Release one before catching another.', 'warning')
-        return redirect(url_for('index'))  # Redirect to the index route with a warning message
+        return redirect(url_for('main.pokemon_info'))  # Redirect to the index route with a warning message
 
     # Check if the user already caught the Pokémon
     if UserPokemon.query.filter_by(user_id=user.id, pokemon_name=pokemon_name).first():
         flash('You already caught this Pokemon', 'warning')
-        return redirect(url_for('index'))  # Redirect to the index route with a warning message
+        return redirect(url_for('main.pokemon_info'))  # Redirect to the index route with a warning message
 
     # Create a new UserPokemon instance
     user_pokemon = UserPokemon(user_id=user.id, pokemon_name=pokemon_name)
     user_pokemon.save()
     flash(f'You caught {pokemon_name}!', 'success')  # Flash success message for catching Pokémon
 
-    return redirect(url_for('index'))  # Redirect to the index route
+    return redirect(url_for('main.pokemon_info'))  # Redirect to the index route
 
-@app.route('/release/<pokemon_id>', methods=['POST'])
+@main.route('/release/<pokemon_id>', methods=['POST'])
 def release_pokemon(pokemon_id):
     # Assuming you have a function to get the current user
     user = current_user
@@ -107,9 +107,9 @@ def release_pokemon(pokemon_id):
     db.session.delete(pokemon)
     db.session.commit()
     flash('Pokemon released successfully', 'success')
-    return redirect(url_for('my_pokemon'))  # Redirect to the My Pokémon page
+    return redirect(url_for('main.my_pokemon'))  # Redirect to the My Pokémon page
 
-@app.route('/mypokemon')
+@main.route('/mypokemon')
 def my_pokemon():
     user = current_user
     caught_pokemon = UserPokemon.query.filter_by(user_id=user.id).all()
