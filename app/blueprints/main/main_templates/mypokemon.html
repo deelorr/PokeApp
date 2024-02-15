@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}My Pokémon{% endblock %}
+
+{% block content %}
+{% include './includes/nav.html' %}
+<div class="pokeapp-title">
+    <h1 class="pokeapp-text">My Pokémon</h1>
+</div>
+<div class="flex-container">
+    {% if caught_pokemon %}
+    {% for pokemon in caught_pokemon %}
+    <div class="card">
+        <h4 class="card-title">#{{ pokemon.pokemon.id }} - {{ pokemon.pokemon.name }}</h4>
+        <img src="{{ pokemon.pokemon.image }}" class="card-img-top" alt="{{ pokemon.pokemon.name }}">
+        <div class="card-body">
+            <p class="card-text">
+                <b>HP:</b> {{ pokemon.pokemon.base_hp }} <b>DEF:</b> {{ pokemon.pokemon.base_def }} <b>ATK:</b> {{ pokemon.pokemon.base_atk }} <br>
+                <b>Caught by:</b> {{ pokemon.user.username }}
+            </p>
+            <form method="POST" action="{{ url_for('release_pokemon', pokemon_id=pokemon.id) }}">
+                <button type="submit" class="btn btn-danger">Release</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>No Pokémon caught yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

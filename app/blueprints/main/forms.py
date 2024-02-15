@@ -5,3 +5,4 @@ from wtforms.validators import DataRequired
 class NameForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
     submit_btn = SubmitField('Search')
+    catch_btn = SubmitField('Catch me!')

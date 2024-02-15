@@ -1,42 +1,47 @@
 {% extends 'base.html' %}
 
-{% block title %} PokéApp {% endblock %}
+{% block title %}PokéApp{% endblock %}
 
-{%block styles%}
+{% block styles %}
 <link rel="stylesheet" href="../static/styles/login.css">
-{%endblock%}
+{% endblock %}
 
 {% block content %}
-{%include './includes/nav.html'%}
-  <div class="pokeapp-title">
+{% include './includes/nav.html' %}
+<div class="pokeapp-title">
     <h1 class="pokeapp-text">PokéApp</h1>
     <p class="pokeapp-text">Search for a Pokémon by name or ID</p>
-  </div>
-  <div class='flex-container'>
-    <form method="POST">
-      {{ form.hidden_tag() }}
-    <div class="mb-3">
-      <label for="name" class="form-label">Enter Name or ID</label>
-      {{ form.name(class='form-control', id='name') }}
-    </div>
-    {{ form.submit_btn(class='btn my-btn') }}
-    </form>
-  </div>
-  {% if pokemon %}
-  <div class='flex-container'>
-    <div class="card">
-      <h4 class="card-title">#{{pokemon['ID']}} - {{ pokemon['Name'] }}</h4>
-      <img src="{{ pokemon['Sprite URL'] }}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text">
-          <b>HP:</b> {{ pokemon['HP'] }} <b>DEF:</b> {{ pokemon['Defense'] }} <b>ATK:</b> {{ pokemon['Attack'] }} <br>
-          <b>Ability:</b> {{ pokemon['Ability'] }}
-        </p>
-        <div class="shiny-hover-container">
-          <button class="shiny-hover">Shiny</button>
+</div>
+<div class='flex-container'>
+    <form id="pokemon-search-form" method="POST" action="{{ url_for('pokemon_info') }}">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            <label for="name" class="form-label">Enter Name or ID</label>
+            {{ form.name(class='form-control', id='name') }}
         </div>
-      </div>
+        {{ form.submit_btn(class='btn my-btn') }}
+    </form>
+</div>
+{% if pokemon %}
+<div class='flex-container'>
+    <div class="card">
+        <h4 class="card-title">#{{pokemon['ID']}} - {{ pokemon['Name'] }}</h4>
+        <img src="{{ pokemon['Sprite URL'] }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">
+                <b>HP:</b> {{ pokemon['HP'] }} <b>DEF:</b> {{ pokemon['Defense'] }} <b>ATK:</b> {{ pokemon['Attack'] }} <br>
+                <b>Ability:</b> {{ pokemon['Ability'] }}
+            </p>
+            <div class="shiny-hover-container">
+                <button class="shiny-hover">Shiny</button>
+                <form method="POST" action="{{ url_for('catch_pokemon') }}">
+                  <input type="hidden" name="username" value="{{ current_user.username }}">
+                  <input type="hidden" name="pokemon_name" value="{{ pokemon['Name'] }}">
+                  <button type="submit" class="btn my-btn">Catch</button>
+              </form>
+            </div>
+        </div>
     </div>
-  </div>  
-  {% endif %}
+</div>
+{% endif %}
 {% endblock %}
