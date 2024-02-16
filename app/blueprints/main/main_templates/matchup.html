@@ -1,31 +1,51 @@
-<!-- matchup.html -->
+<!-- search.html -->
 {% extends 'base.html' %}
-{% block title %}Pokémon Matchup{% endblock %}
+{% block title %}Search Users{% endblock %}
 
 {%block styles%}
 <link rel="stylesheet" href="../static/styles/login.css">
 {%endblock%}
 
 {% block content %}
+{% include './includes/nav.html' %}
 <div class="container">
     <h1>Pokémon Matchup</h1>
     <div class="matchup-teams">
         <div class="team">
-            <h2>{{ current_user.username }}'s Team</h2>
+            <h2>{{ current_user.username.title() }}'s Team</h2>
             <ul>
                 {% for pokemon in current_user_team %}
-                <li>{{ pokemon.name }} - HP: {{ pokemon.base_hp }}</li>
+                    <div class="card">
+                        <h4 class="card-title">#{{ pokemon.id }} - {{ pokemon.name }}</h4>
+                        <img src="{{ pokemon.image }}" class="card-img-top" alt="{{ pokemon.name }}">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <b>HP:</b> {{ pokemon.base_hp }} <b>DEF:</b> {{ pokemon.base_def }} <b>ATK:</b> {{ pokemon.base_atk }} <br>
+                                <b>Caught by:</b> {{ pokemon.caught_by_users[0].user.username }} {# Assuming each Pokémon is caught by only one user #}
+                            </p>
+                        </div>
+                    </div>
                 {% endfor %}
             </ul>
         </div>
         <div class="team">
-            <h2>{{ opponent.username }}'s Team</h2>
+            <h2>{{ opponent.username.title() }}'s Team</h2>
             <ul>
                 {% for pokemon in opponent_team %}
-                <li>{{ pokemon.name }} - HP: {{ pokemon.base_hp }}</li>
+                <div class="card">
+                    <h4 class="card-title">#{{ pokemon.id }} - {{ pokemon.name }}</h4>
+                    <img src="{{ pokemon.image }}" class="card-img-top" alt="{{ pokemon.name }}">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b>HP:</b> {{ pokemon.base_hp }} <b>DEF:</b> {{ pokemon.base_def }} <b>ATK:</b> {{ pokemon.base_atk }} <br>
+                            <b>Caught by:</b> {{ pokemon.caught_by_users[0].user.username }} {# Assuming each Pokémon is caught by only one user #}
+                        </p>
+                    </div>
+                </div>
                 {% endfor %}
             </ul>
         </div>
     </div>
 </div>
 {% endblock %}
+

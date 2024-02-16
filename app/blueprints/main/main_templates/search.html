@@ -7,15 +7,22 @@
 {%endblock%}
 
 {% block content %}
+{% include './includes/nav.html' %}
 <div class="container">
     <h1>All Users</h1>
     <div class="user-list">
         <ul>
             {% for user in users %}
-            <li>
-                {{ user.username }}
-                <a href="{{ url_for('main.matchup', opponent_id=user.id) }}" class="btn btn-primary">Battle</a>
-            </li>
+            <div class="card">
+                <h4 class="card-title">#{{ user.id }} - {{ user.username }}</h4>
+                <img src="#" class="card-img-top" alt="">
+                <div class="card-body">
+                    <p class="card-text">
+                        <b>Email:</b> {{ user.email }} <br>
+                        <a href="{{ url_for('main.matchup', opponent_id=user.id) }}" class="btn btn-primary">Battle</a>
+                    </p>
+                </div>
+            </div>
             {% endfor %}
         </ul>
     </div>
