@@ -8,44 +8,37 @@
 
 {% block content %}
 {% include './includes/nav.html' %}
-<div class="container">
     <h1>Pokémon Matchup</h1>
     <div class="matchup-teams">
+        <h2>{{ current_user.username.title() }}'s Team</h2>
         <div class="team">
-            <h2>{{ current_user.username.title() }}'s Team</h2>
-            <ul>
                 {% for pokemon in current_user_team %}
                     <div class="card">
-                        <h4 class="card-title">#{{ pokemon.id }} - {{ pokemon.name }}</h4>
+                        <h5 class="card-title">#{{ pokemon.id }} - {{ pokemon.name }}</h5>
                         <img src="{{ pokemon.image }}" class="card-img-top" alt="{{ pokemon.name }}">
                         <div class="card-body">
                             <p class="card-text">
-                                <b>HP:</b> {{ pokemon.base_hp }} <b>DEF:</b> {{ pokemon.base_def }} <b>ATK:</b> {{ pokemon.base_atk }} <br>
-                                <b>Caught by:</b> {{ pokemon.caught_by_users[0].user.username }} {# Assuming each Pokémon is caught by only one user #}
+                                <b>HP:</b> {{ pokemon.base_hp }} <b>DEF:</b> {{ pokemon.base_def }} <b>ATK:</b> {{ pokemon.base_atk }}
                             </p>
                         </div>
                     </div>
                 {% endfor %}
-            </ul>
         </div>
+        <h4>VS</h4>
+        <h2>{{ opponent.username.title() }}'s Team</h2>
         <div class="team">
-            <h2>{{ opponent.username.title() }}'s Team</h2>
-            <ul>
                 {% for pokemon in opponent_team %}
                 <div class="card">
-                    <h4 class="card-title">#{{ pokemon.id }} - {{ pokemon.name }}</h4>
+                    <h5 class="card-title">#{{ pokemon.id }} - {{ pokemon.name }}</h5>
                     <img src="{{ pokemon.image }}" class="card-img-top" alt="{{ pokemon.name }}">
                     <div class="card-body">
                         <p class="card-text">
-                            <b>HP:</b> {{ pokemon.base_hp }} <b>DEF:</b> {{ pokemon.base_def }} <b>ATK:</b> {{ pokemon.base_atk }} <br>
-                            <b>Caught by:</b> {{ pokemon.caught_by_users[0].user.username }} {# Assuming each Pokémon is caught by only one user #}
+                            <b>HP:</b> {{ pokemon.base_hp }} <b>DEF:</b> {{ pokemon.base_def }} <b>ATK:</b> {{ pokemon.base_atk }}
                         </p>
                     </div>
                 </div>
                 {% endfor %}
-            </ul>
         </div>
     </div>
-</div>
 {% endblock %}
 

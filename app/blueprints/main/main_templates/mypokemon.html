@@ -8,24 +8,21 @@
 
 {% block content %}
 {% include './includes/nav.html' %}
-<div class="pokeapp-title">
-    <h1 class="pokeapp-text">My Pokémon</h1>
-</div>
-<div class="flex-container">
+<h1 class="pokeapp-text">My Pokémon</h1>
+<div class="team">
     {% if caught_pokemon %}
     {% for pokemon in caught_pokemon %}
     <div class="card">
-        <h4 class="card-title">#{{ pokemon.pokemon.id }} - {{ pokemon.pokemon.name }}</h4>
+        <h5 class="card-title">#{{ pokemon.pokemon.id }} - {{ pokemon.pokemon.name }}</h5>
         <img src="{{ pokemon.pokemon.image }}" class="card-img-top" alt="{{ pokemon.pokemon.name }}">
         <div class="card-body">
             <p class="card-text">
                 <b>HP:</b> {{ pokemon.pokemon.base_hp }} <b>DEF:</b> {{ pokemon.pokemon.base_def }} <b>ATK:</b> {{ pokemon.pokemon.base_atk }} <br>
-                <b>Caught by:</b> {{ pokemon.user.username }}
             </p>
-            <form method="POST" action="{{ url_for('main.release_pokemon', pokemon_id=pokemon.id) }}">
-                <button type="submit" class="btn btn-danger">Release</button>
-            </form>
         </div>
+        <form class="release-btn" method="POST" action="{{ url_for('main.release_pokemon', pokemon_id=pokemon.id) }}">
+            <button type="submit" class="btn btn-danger">Release</button>
+        </form>
     </div>
     {% endfor %}
     {% else %}

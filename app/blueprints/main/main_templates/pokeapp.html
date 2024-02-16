@@ -33,16 +33,12 @@
                 <b>HP:</b> {{ pokemon['HP'] }} <b>DEF:</b> {{ pokemon['Defense'] }} <b>ATK:</b> {{ pokemon['Attack'] }} <br>
                 <b>Ability:</b> {{ pokemon['Ability'] }}
             </p>
-            <div class="shiny-hover-container">
-                <button class="shiny-hover">Shiny</button>
-                <form method="POST" action="{{ url_for('main.catch_pokemon') }}">
-                  <input type="hidden" name="username" value="{{ current_user.username }}">
-                  <input type="hidden" name="pokemon_name" value="{{ pokemon['Name'] }}">
-                  <button type="submit" class="btn my-btn">Catch</button>
-              </form>
-            </div>
         </div>
-    </div>
+        <form class="catch-btn" method="POST" action="{{ url_for('main.catch_pokemon') }}">
+            <input type="hidden" name="username" value="{{ current_user.username }}">
+            <input type="hidden" name="pokemon_name" value="{{ pokemon['Name'] }}">
+            <button type="submit" class="btn my-btn">Catch</button>
+        </form>
 </div>
 {% endif %}
 {% endblock %}
