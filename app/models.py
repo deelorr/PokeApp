@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String, unique=True, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
+    pokemon_team = db.relationship('Pokemon', secondary='user_pokemon', lazy='dynamic')
     
     def __init__(self, username, email, password):
         self.username = username

@@ -1,0 +1,31 @@
+<!-- matchup.html -->
+{% extends 'base.html' %}
+{% block title %}Pokémon Matchup{% endblock %}
+
+{%block styles%}
+<link rel="stylesheet" href="../static/styles/login.css">
+{%endblock%}
+
+{% block content %}
+<div class="container">
+    <h1>Pokémon Matchup</h1>
+    <div class="matchup-teams">
+        <div class="team">
+            <h2>{{ current_user.username }}'s Team</h2>
+            <ul>
+                {% for pokemon in current_user_team %}
+                <li>{{ pokemon.name }} - HP: {{ pokemon.base_hp }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="team">
+            <h2>{{ opponent.username }}'s Team</h2>
+            <ul>
+                {% for pokemon in opponent_team %}
+                <li>{{ pokemon.name }} - HP: {{ pokemon.base_hp }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

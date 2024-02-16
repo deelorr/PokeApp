@@ -115,3 +115,32 @@ def my_pokemon():
     caught_pokemon = UserPokemon.query.filter_by(user_id=user.id).all()
 
     return render_template('mypokemon.html', caught_pokemon=caught_pokemon)
+
+@main.route('/search', methods=['GET', 'POST'])
+def search_users():
+    users = User.query.filter(User.id != current_user.id).all()
+    return render_template('search.html', users=users)
+
+@main.route('/battle/<int:opponent_id>', methods=['GET'])
+def battle(opponent_id):
+    opponent = User.query.get(opponent_id)
+
+    if opponent:
+        # Perform battle logic here
+        # For simplicity, let's assume the challenger always wins
+        flash(f"You are battling {opponent.username}!", 'info')
+        return redirect(url_for('main.index'))  # Redirect to homepage after battle
+    else:
+        flash("Opponent not found", 'error')
+        return redirect(url_for('main.search_users'))  # Redirect to search page if opponent not found
+    
+@main.route('/matchup/<int:opponent_id>')
+def matchup(opponent_id):
+    current_user_team = current_user.pokemon_team
+    opponent = User.query.get(opponent_id)
+    if opponent:
+        opponent_team = opponent.pokemon_team  # Retrieve the opponent's Pokémon team
+        return render_template('matchup.html', current_user_team=current_user_team, opponent_team=opponent_team, opponent=opponent)
+    else:
+        flash("Opponent not found", 'error')
+        return redirect(url_for('main.search_users'))  # Redirect to search page if opponent not found
