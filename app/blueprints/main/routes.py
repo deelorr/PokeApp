@@ -46,8 +46,6 @@ def pokemon_info():
     else:
         return render_template('pokeapp.html', form=form)
 
-# from flask import request, flash, redirect, url_for
-
 @main.route('/catch', methods=['POST'])
 def catch_pokemon():
     username = request.form.get('username')
@@ -57,16 +55,16 @@ def catch_pokemon():
     user = User.query.filter_by(username=username).first()
     if not user:
         flash('User not found', 'error')
-        return redirect(url_for('index'))  # Assuming you have an index route
+        return redirect(url_for('index'))
 
     # Check if the Pokémon exists or add it to the database
     pokemon = Pokemon.query.filter_by(name=pokemon_name).first()
     if not pokemon:
         # If the Pokémon doesn't exist, create a new entry for it
-        pokemon_info = get_pokemon_info(pokemon_name)  # Assuming you have a function to get Pokémon info
+        pokemon_info = get_pokemon_info(pokemon_name)
         if not pokemon_info:
             flash('Failed to retrieve Pokémon info', 'error')
-            return redirect(url_for('index'))  # Redirect to the index route with an error message
+            return redirect(url_for('index'))
 
         # Create a new Pokémon entry
         pokemon = Pokemon(
@@ -77,38 +75,36 @@ def catch_pokemon():
             image=pokemon_info['Sprite URL']
         )
         pokemon.save()
-        flash(f'{pokemon_name} added to Pokédex', 'success')  # Flash success message for adding Pokémon
+        flash(f'{pokemon_name} added to Pokédex', 'success')
 
     # Check if the user has already caught the maximum number of Pokémon
     if len(user.pokemon_caught) >= 6:
         flash('You already have 6 Pokémon! Release one before catching another.', 'warning')
-        return redirect(url_for('main.pokemon_info'))  # Redirect to the index route with a warning message
+        return redirect(url_for('main.pokemon_info'))
 
     # Check if the user already caught the Pokémon
     if UserPokemon.query.filter_by(user_id=user.id, pokemon_name=pokemon_name).first():
         flash('You already caught this Pokemon', 'warning')
-        return redirect(url_for('main.pokemon_info'))  # Redirect to the index route with a warning message
+        return redirect(url_for('main.pokemon_info'))
 
     # Create a new UserPokemon instance
     user_pokemon = UserPokemon(user_id=user.id, pokemon_name=pokemon_name)
     user_pokemon.save()
-    flash(f'You caught {pokemon_name}!', 'success')  # Flash success message for catching Pokémon
+    flash(f'You caught {pokemon_name}!', 'success')
 
-    return redirect(url_for('main.pokemon_info'))  # Redirect to the index route
+    return redirect(url_for('main.pokemon_info'))
 
 @main.route('/release/<pokemon_id>', methods=['POST'])
 def release_pokemon(pokemon_id):
-    # Assuming you have a function to get the current user
     user = current_user
-    # Assuming you have a function to get the user's caught Pokémon
     pokemon = UserPokemon.query.filter_by(user_id=user.id, id=pokemon_id).first()
     if not pokemon:
         flash('Pokemon not found', 'error')
-        return redirect(url_for('my_pokemon'))  # Redirect to the My Pokémon page
+        return redirect(url_for('my_pokemon'))
     db.session.delete(pokemon)
     db.session.commit()
     flash('Pokemon released successfully', 'success')
-    return redirect(url_for('main.my_pokemon'))  # Redirect to the My Pokémon page
+    return redirect(url_for('main.my_pokemon'))
 
 @main.route('/mypokemon')
 def my_pokemon():
@@ -126,30 +122,27 @@ def search_users():
 def battle(opponent_id):
     opponent = User.query.get(opponent_id)
 
-    if opponent:
-        # Perform battle logic here
-        # For simplicity, let's assume the challenger always wins
+    if opponent:        
         flash(f"You are battling {opponent.username}!", 'info')
-        return redirect(url_for('main.index'))  # Redirect to homepage after battle
+        return redirect(url_for('main.index'))
     else:
         flash("Opponent not found", 'error')
-        return redirect(url_for('main.search_users'))  # Redirect to search page if opponent not found
+        return redirect(url_for('main.search_users')) 
     
 @main.route('/matchup/<int:opponent_id>')
 def matchup(opponent_id):
     current_user_team = current_user.pokemon_team
     opponent = User.query.get(opponent_id)
     if opponent:
-        opponent_team = opponent.pokemon_team  # Retrieve the opponent's Pokémon team
+        opponent_team = opponent.pokemon_team
         return render_template('matchup.html', current_user_team=current_user_team, opponent_team=opponent_team, opponent=opponent)
     else:
         flash("Opponent not found", 'error')
-        return redirect(url_for('main.search_users'))  # Redirect to search page if opponent not found
+        return redirect(url_for('main.search_users'))
 
 @main.route('/battle_results')
 def battle_results():
-    # Simulate battle results with random winner or loser
-    participants = ['Player 1', 'Player 2']  # Assuming two participants for simplicity
+    participants = ['Player 1', 'Player 2']
     winner = random.choice(participants)
     loser = next(participant for participant in participants if participant != winner)
 
