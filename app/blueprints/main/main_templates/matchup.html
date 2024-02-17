@@ -1,10 +1,8 @@
-<!-- search.html -->
 {% extends 'base.html' %}
-{% block title %}Search Users{% endblock %}
-
-{%block styles%}
+{% block title %} Matchup {% endblock %}
+{% block styles %}
 <link rel="stylesheet" href="../static/styles/login.css">
-{%endblock%}
+{% endblock %}
 
 {% block content %}
 {% include './includes/nav.html' %}
@@ -40,7 +38,7 @@
                 {% endfor %}
         </div>
         <div class="battle-result-btn">
-            <button type="submit" class="btn btn-danger">Battle Results</button>
+            <a href="{{ url_for('main.battle_results') }}" class="btn btn-danger">Battle Results</a>
         </div>
     </div>
 {% endblock %}

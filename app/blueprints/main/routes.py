@@ -5,6 +5,7 @@ import requests
 from app.models import User, Pokemon, UserPokemon, db
 from .forms import NameForm
 from flask_login import current_user
+import random
 
 @main.route('/')
 def index():
@@ -144,3 +145,12 @@ def matchup(opponent_id):
     else:
         flash("Opponent not found", 'error')
         return redirect(url_for('main.search_users'))  # Redirect to search page if opponent not found
+
+@main.route('/battle_results')
+def battle_results():
+    # Simulate battle results with random winner or loser
+    participants = ['Player 1', 'Player 2']  # Assuming two participants for simplicity
+    winner = random.choice(participants)
+    loser = next(participant for participant in participants if participant != winner)
+
+    return render_template('battle_results.html', winner=winner, loser=loser)

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} Results {% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="../static/styles/login.css">
+{% endblock %}
+
+{% block content %}
+{% include './includes/nav.html' %}
+<!DOCTYPE html>
+    <title>Battle Results</title>
+</head>
+<body>
+    <h1>Battle Results</h1>
+    <h2>Winner: {{ winner }}</h2>
+    <h2>Loser: {{ loser }}</h2>
+    <!-- Additional content for displaying battle results -->
+</body>
+</html>
+{% endblock %}
+```
